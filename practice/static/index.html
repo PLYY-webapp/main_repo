@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLYY</title>
+</head>
+<body>
+    <table border="1" id="plyy-table">
+        <tr>
+            <th>plyy_uuid</th>
+            <th>plyy_title</th>
+            <th>plyy_img</th>
+            <th>plyy_gen_date</th>
+            <th>plyy_update_date</th>
+            <th>plyy_cmt</th>
+            <th>gtag_uuid</th>
+        </tr>
+    </table>
+
+    <script>
+        function fetchPlyy() {
+            fetch('/api/plyy')
+            .then(response => response.json())
+            .then(data => {
+                const table = document.getElementById('plyy-table');
+                data.forEach(plyy => {
+                    const row = table.insertRow();
+                    row.insertCell(0).textContent = plyy[0];
+                    row.insertCell(1).textContent = plyy[1];
+                    row.insertCell(2).textContent = plyy[2];
+                    row.insertCell(3).textContent = plyy[3];
+                    row.insertCell(4).textContent = plyy[4];
+                    row.insertCell(5).textContent = plyy[5];
+                    row.insertCell(6).textContent = plyy[6];
+                })
+            })
+            .catch(error => console.error('데이터를 처리하는 과정에서 오류가 발생하였습니다.'))
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchPlyy();
+        })
+    </script>
+</body>
+</html>
