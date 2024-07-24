@@ -1,0 +1,8 @@
+// px to rem 공식
+@function rem($px, $base : 10){
+    // 실측값 / 기준폰트값(html 요소에 지정한 폰트 크기)
+    // 40px / 10px = 4rem값
+    // (숫자값 / 숫자값) * 1rem = ??rem;
+    $sum : ($px / $base) * 1rem;
+    @return $sum;
+}
