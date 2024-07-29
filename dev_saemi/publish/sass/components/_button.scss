@@ -1,23 +1,64 @@
 .btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     &-logo {
-        width: 86.48px;
-        height: 36px;
-        background: url(../images/btn_logo.svg) no-repeat center;  // style.css 파일 기준임으로 경로 지정에 주의!
+        @include bg('btn_logo.svg', center, null, null, rem(86.48),auto);
+        width: rem(86.48);
+        height: rem(36);
     }
     &-bell {
-        position: relative;
+        @include bg('btn_bell.svg', null, null, null, rem(40),auto);
         width: rem(40);
         height: rem(40);
-        background: url(../images/btn_bell.svg) no-repeat center;  // style.css 파일 기준임으로 경로 지정에 주의!
     }
     &-like {
+        @include bg('btn_like.svg', null, null, null, rem(40),auto);
         width: rem(40);
         height: rem(40);
-        background: url(../images/btn_like.svg) no-repeat center;  // style.css 파일 기준임으로 경로 지정에 주의!
     }
     &-profile {
+        @include bg('btn_profile.svg', null, null, null, rem(40),auto);
         width: rem(40);
         height: rem(40);
-        background: url(../images/btn_profile.svg) no-repeat center;  // style.css 파일 기준임으로 경로 지정에 주의!
+    }
+    &-pre {
+        @include bg('btn_pre.svg', null, null, null, rem(24), auto);
+        width: rem(24);
+        height: rem(24);
+    }
+    // plyy_like 하트 안 채워짐
+    &-plike__false {
+        @include bg('ico_plike__false.svg', center);
+        width: rem(46);
+        height: rem(46);
+    }
+    // curator_like 하트 안 채워짐
+    &-clike__false {
+        @include bg('ico_clike__false.svg', center);
+        width: rem(46);
+        height: rem(46);
+    }
+    // plyy_like 하트 채워짐
+    &-plike__true {
+        @include bg('ico_plike__true.svg', center);
+        width: rem(46);
+        height: rem(46);
+    }
+    // curator_like 하트 채워짐
+    &-clike__true {
+        @include bg('ico_clike__true.svg', center);
+        width: rem(46);
+        height: rem(46);
+    }
+    &-hash {
+        @include bg('ico_hash.svg', null, null, null, rem(40), auto);
+        width: rem(40);
+        height: rem(40);
+    }
+    &-search {
+        @include bg('ico_search.svg', null, null, null, rem(40), auto);
+        width: rem(40);
+        height: rem(40);
     }
 }

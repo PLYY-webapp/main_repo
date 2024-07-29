@@ -4,8 +4,13 @@
     font-style: normal;
 }
 
-html, body  {
-    font-family: 'Happiness-Sans', sans-serif;
+body,
+input,
+textarea,
+select,
+button,
+table {
+  font-family: 'Happiness-Sans', sans-serif;
 }
 
 html { font-size: 62.5%;}

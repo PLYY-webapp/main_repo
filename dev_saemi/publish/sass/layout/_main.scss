@@ -1,0 +1,12 @@
+main {
+    width: 100%;
+    margin: 0 auto;  // 상하 : 0px, 좌우 : 가운데정렬
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+.main_container {
+    max-width: rem(720);
+    background-color: $background_color;
+}

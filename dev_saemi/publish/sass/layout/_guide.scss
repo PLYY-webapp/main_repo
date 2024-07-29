@@ -1,0 +1,20 @@
+.guide {
+    background-color: $basic_white;
+    border-top: 1px solid $background_color;
+    .guide > ul {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+    li:nth-child(4n){
+        border-right: none;
+    }
+    .guide > a {
+        display: block;
+        line-height: rem(30);
+        text-align: center;
+        border-bottom: 1px solid $background_color;
+        border-right: 1px solid $background_color;
+        font-size: rem(12);
+        color: $background_color;
+    }
+}
