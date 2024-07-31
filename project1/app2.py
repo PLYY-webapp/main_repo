@@ -35,8 +35,9 @@ def api_main_tag():
             FROM TAG_GENRE
             '''
     tags = db.get_query(query)
+    result = [dict(row) for row in tags]
 
-    return jsonify(tags)
+    return jsonify(result)
 
 
 @api_main.route('/plyy')
@@ -60,11 +61,13 @@ def api_main_plyy():
             GROUP BY p.plyy_uuid;
             '''
     plyys = db.get_query(query)
+    result = [dict(row) for row in plyys]
 
-    for i in plyys:
-        i['tag'] = db.tag_query('plyy', i['plyy_uuid'], mul=False)['tag_name']
+    for i in result:
+        tag = dict(db.tag_query('plyy', i['plyy_uuid'], mul=False))
+        i['tag'] = tag['tag_name']
     
-    return jsonify(plyys)
+    return jsonify(result)
 
 
 @api_main.route('/curator')
@@ -79,6 +82,7 @@ def api_main_curator():
             GROUP BY c_uuid;
             '''
     curators = db.get_query(query)
+    result = [dict(row) for row in curators]
     
     for i in curators:
         i['tags'] = db.tag_query('curator', i['c_uuid'])
@@ -96,12 +100,11 @@ def api_main_curator():
     for i in date:
         i['max_date'] = [pd.to_datetime(i['generate']), pd.to_datetime(i['update'])].max()
 
-    return jsonify(curators)
+    return jsonify(results)
 
 
 @api_plyy.route('/<id>')
 def api_plyy_detail(id):
-    # 쿼리문의 복잡도 줄임 (줄바꿈, 인덴트)
     info_query = '''
                  SELECT
                  p.plyy_title,
@@ -117,7 +120,9 @@ def api_plyy_detail(id):
                  JOIN TAG_GENRE g ON p.gtag_uuid=g.gtag_uuid 
                  WHERE p.plyy_uuid=? GROUP BY p.plyy_uuid;
                  '''
-    info = db.get_query(info_query,(id,),mul=False)
+    info = dict(db.get_query(info_query,(id,),mul=False))
+
+    # 플리 업데이트 날짜 NULL일 때
     if info['update'] is None:
         info['update'] = info['generate']
 
@@ -135,8 +140,10 @@ def api_plyy_detail(id):
                    WHERE p.plyy_uuid=?;
                    '''
     tracks = db.get_query(tracks_query,(id,))
+    tracks = [dict(row) for row in tracks]
 
     tags = db.tag_query('plyy', id)
+    tags = [dict(row) for row in tags]
 
     return jsonify({'info': info, 'tracks': tracks, 'tags': tags})
 
@@ -155,7 +162,7 @@ def api_song(id, song_index):
                  JOIN SONG s ON t.track_uuid=s.track_uuid 
                  WHERE s.plyy_uuid=? AND s.song_index=?
                  '''
-    song = db.get_query(song_query, (id,song_index), mul=False)
+    song = dict(db.get_query(song_query, (id,song_index), mul=False))
 
     total_query = '''
                   SELECT
@@ -163,13 +170,8 @@ def api_song(id, song_index):
                   FROM SONG
                   WHERE plyy_uuid=?
                   '''
-    total_index = db.get_query(total_query, (id,), mul=False)
+    total_index = dict(db.get_query(total_query, (id,), mul=False))
 
     song['total_index'] = total_index['total']
-    print(song)
     
     return jsonify(song)
-
-
-if __name__=='__main__':
-    app.run(debug=True)
