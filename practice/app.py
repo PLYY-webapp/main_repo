@@ -1,25 +1,19 @@
-import database as db
-from flask import Flask, jsonify, json
+# app.py
+from flask import Flask
 
-app = Flask(__name__)
+def create_app():
+    app = Flask(__name__)
+    app.secret_key = 'plyy_page'
 
+    from app2 import main, plyy, api_main, api_plyy
 
-@app.route('/')
-def index():
-    return app.send_static_file('index.html')
+    app.register_blueprint(main, url_prefix='/')
+    app.register_blueprint(plyy, url_prefix='/plyy')
+    app.register_blueprint(api_main, url_prefix='/api/main')
+    app.register_blueprint(api_plyy, url_prefix='/api/plyy')
 
+    return app
 
-@app.route('/api/plyy')
-def plyy():
-    query = "SELECT * FROM PLYY"
-    plyy = db.get_query(query)
-    return jsonify(plyy)
-
-
-@app.route('/api/plyyList')
-def plyyList():
-    return app.send_static_file('plyy.html')
-
-
-if __name__=='__main__':
+if __name__ == "__main__":
+    app = create_app()
     app.run(debug=True)
