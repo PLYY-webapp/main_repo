@@ -64,8 +64,13 @@ def api_main_plyy():
     result = [dict(row) for row in plyys]
 
     for i in result:
-        tag = dict(db.tag_query('plyy', i['plyy_uuid'], mul=False))
-        i['tag'] = tag['tag_name']
+        tag = db.tag_query('plyy', i['plyy_uuid'], mul=False)
+        if tag:
+            tag = dict(tag)
+            i['tag'] = tag['tag_name']
+        else:
+            i['tag'] = ''
+    
     
     return jsonify(result)
 
@@ -97,10 +102,10 @@ def api_main_curator():
                  '''
     date = db.get_query(date_query)
     
-    for i in date:
-        i['max_date'] = [pd.to_datetime(i['generate']), pd.to_datetime(i['update'])].max()
+    # for i in date:
+        # i['max_date'] = [pd.to_datetime(i['generate']), pd.to_datetime(i['update'])].max()
 
-    return jsonify(results)
+    return jsonify(result)
 
 
 @api_plyy.route('/<id>')
@@ -122,9 +127,9 @@ def api_plyy_detail(id):
                  '''
     info = dict(db.get_query(info_query,(id,),mul=False))
 
-    # 플리 업데이트 날짜 NULL일 때
-    if info['update'] is None:
-        info['update'] = info['generate']
+    # # 플리 업데이트 날짜 NULL일 때
+    # if info['update'] is None:
+    #     info['update'] = info['generate']
 
     tracks_query = '''
                    SELECT t.track_uuid,

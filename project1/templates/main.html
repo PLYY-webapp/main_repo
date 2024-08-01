@@ -22,12 +22,14 @@
     {% block content %}
         <!-- 플리 카드 -->
         <ul class="plyy_card_list" id="plyy_list"></ul>
+
+        <!-- 큐레이터 카드 -->
+        <ul class="curator_card_list"></ul>
     {% endblock %}
 
 {% block script %}
     <script>   
         document.addEventListener('DOMContentLoaded', function() {
-            document.title = 'PLYY';
             fetchTag();
             fetchPlyy();
         });
@@ -50,19 +52,21 @@
             fetch('/api/main/plyy')
             .then(response =>  response.json())
             .then(data => {
+                document.title = 'PLYY';
                 const plyy_list = document.getElementById('plyy_list');
-                data.forEach(plyy => {
-                    let tagId = 'tag' + plyy.plyy_uuid;
-                    let heartId = 'heart' + plyy.plyy_uuid; 
+                data.forEach((plyy, index) => {
+                    let dateTagId = 'dateTag' + index;
+                    let plyyTagId = 'plyyTag' + index;
+                    let heartId = 'heart' + index; 
                     const plyy_card = document.createElement('li');
                     plyy_card.innerHTML = 
                         `<a href="./plyy/${plyy.plyy_uuid}" class="plyy_card__info">` +
                             '<div class="plyy_card__thumb">' +
-                                `<div id="${tagId}">abc</div>` +
+                                `<div id="${dateTagId}" class="badge green"></div>` +
                                 `<img src="@static/images/plyy/${plyy.plyy_img}" class="plyy_card__thumb__large">` +
                                 '<div class="plyy_card__taglist">' +
                                     `<div class="badges tag"># ${plyy.genre}</div>` +
-                                    `<div class="badges tag"># ${plyy.tag}</div>` +
+                                    `<div id="${plyyTagId}" class="badges tag"></div>` +
                                 '</div>' +
                                 `<button class="btn-plike__true" id=${heartId} aria-label="플레이리스트 좋아요"></button>` +
                             '</div>' +
@@ -76,36 +80,41 @@
                             '</div>' +
                         '</div>' +
                     '</a>';
-                                   
-                    if (tag(plyy.generate, plyy.update)) {
-                        date_tag = tag(plyy.generate, plyy.update);
-                        console.log(tagId);
-                        plyy_date_tag = document.getElementById(tagId);
-                        console.log(plyy_date_tag);
-                        plyy_date_tag.textContent = date_tag;
-                        plyy_date_tag.classList.add('badges', 'green');
-                    }
 
                     plyy_list.appendChild(plyy_card)
-                });
-            })
-            .then(function(){
-                heart = document.getElementById(heartId);
-                console.log(heart)
-                heart.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    // event.stopPropagation();  # 이벤트 용 처리 막기
+
+                    date_tag = document.getElementById(dateTagId);
+                    if (tag(plyy.generate, plyy.update)) {
+                        date = tag(plyy.generate, plyy.update);
+                        date_tag.textContent = date;
+                        date_tag.classList.add('badges', 'green');
+                    } else {
+                        date_tag.style.visibility = "hidden";
+                    }
+                    
+                    plyy_tag = document.getElementById(plyyTagId);
+                    if (plyy.tag) {
+                        plyy_tag.textContent = '#' + plyy.tag;
+                    } else {
+                        plyy_tag.style.visibility = "hidden";
+                    }
+
+                    heart = document.getElementById(heartId);
+                    heart.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        // event.stopPropagation();  # 이벤트 용 처리 막기
+                    })
                 })
             })
             .catch(error => console.error('데이터를 처리하는 과정에서 오류가 발생하였습니다.'))
         };
-
         
 
         function fetchCurator() {
             fetch('/api/main/curator')
             .then(response => response.json())
             .then(data => {
+                document.title = 'PLYY | CURATOR';
                 const curatorList = document.getElementById('mainList');
                 data.forEach(c => {
                     const newItem = document.createElement('ul');
@@ -143,6 +152,15 @@
             while(mainList.firstChild)
                 mainList.removeChild(mainList.firstChild);
         }
+
+
+        plyyTag = document.getElementById('plyy_tab');
+        curatorTag = document.getElementById('curator_tab');
+
+        plyyTag.addEventListener('click', function(event){
+
+        });
+
     </script>
     <script src="/static/js/runtime.js"></script>
     <script src="/static/js/tag.js"></script>

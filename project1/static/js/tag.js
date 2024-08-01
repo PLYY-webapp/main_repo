@@ -1,10 +1,19 @@
 function tag(generate, update) {
-    dt = new Date();
-    generate = new Date(generate)
-    update = new Date(update)
-    if (generate === update && (dt.getDate() - generate.getDate()) < 32) {
+    now = new Date();
+    nowTime = Math.ceil(now.getTime() / (1000 * 60 * 60 * 24));
+    generate = new Date(generate);
+    generateTime = Math.ceil(generate.getTime() / (1000 * 60 * 60 * 24));
+    console.log('gen: '+generate)
+    if (update) {
+        update = new Date(update);
+        updateTime = Math.ceil(update.getTime() / (1000 * 60 * 60 * 24));
+        console.log('up: '+update)
+    } else {
+        updateTime = 0;
+    }
+    if (!update && ((nowTime - generateTime) < 32)) {
         return 'new'
-    } else if ((dt.getDate() - update.getDate()) < 32) {
+    } else if ((nowTime - updateTime) < 32) {
         return 'update'
     }
 }
