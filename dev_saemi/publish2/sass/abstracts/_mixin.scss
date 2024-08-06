@@ -1,0 +1,78 @@
+// absolute position
+@mixin position($x, $xvalue, $y: null, $yvalue: null ) {
+    position: absolute;
+    
+    // css의 속성은 바로 변수지정이 불가 -> 변수 보호 #{}
+    #{$x} : $xvalue;
+    #{$y} : $yvalue;
+
+    // 통상적으로 left 50%을 하기 때문에 -50%으로 함. right 50% 하려면 mixin 수정 필요
+    @if $xvalue == 50% and $yvalue == 50% {
+        transform: translate(-50%, -50%);
+    }@else if $xvalue == 50% {
+        transform: translateX(-50%);
+    } @else if $yvalue == 50% {
+        transform: translateY(-50%);
+    } 
+}
+
+// 배경 이미지 삽입 믹스인
+@mixin background_img($imgfile_name, $x: null, $y: null, $bgcolor: null, $width: null, $height: null) {
+    background: url(#{$imgurl}#{$imgfile_name}) no-repeat $x $y $bgcolor;
+    background-size: $width $height;
+}
+
+
+// 마지막에 variable 로 옮겨야됨!! : 클래스명, rem(패딩좌우), 높이, 폰트사이즈, 폰트컬러, 보더레디우스, 보더컬러, 배경색
+$badgeSetting : 
+    'green' auto 23 12 $base_black 99 $base_green $base_green,
+    'tag' rem(8) 23 12 $base_black 99 $base_black $base_white
+;
+
+// 배지 믹스인
+// 클래스명, rem(패딩), 높이, 폰트사이즈, 폰트컬러, 보더레디우스, 보더컬러, 배경색
+@each $class, $padLR, $hig, $fs, $color, $br, $borderColor, $bg in $badgeSetting {
+    .badge.#{$class} {
+        padding: rem(4) $padLR;
+        height: rem($hig);
+        font-size: rem($fs);
+        color: $color;
+        border-radius: rem($br);
+        border: 1px solid $borderColor;
+        background-color: $bg;
+        box-sizing: border-box;
+    }
+}
+
+// .hide 믹스인 (IR)
+@mixin hide {
+    overflow: hidden;
+    position: absolute;
+    border: 0;
+    width: 1px;
+    height: 1px;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+.hide { @include hide; }
+
+
+// 마지막에 variable 로 옮겨야됨!! : 클래스명, rem(패딩좌우), 높이, 폰트사이즈, 폰트컬러, 보더레디우스, 보더컬러, 배경색
+$buttonSetting : 
+    'confirm' rem(16) 41 20 $base_black 40 $base_green $base_green,
+    'cancel' rem(16) 41 20 $base_white 40 $base_green transparent
+;
+
+// 버튼 믹스인
+// 클래스명, rem(패딩), 높이, 폰트사이즈, 폰트컬러, 보더레디우스, 보더컬러, 배경색
+@each $class, $padLR, $hig, $fs, $color, $br, $borderColor, $bg in $buttonSetting {
+    .btn.#{$class} {
+        padding: rem(8) $padLR;
+        height: rem($hig);
+        font-size: rem($fs);
+        color: $color;
+        border-radius: rem($br);
+        border: 1px solid $borderColor;
+        background-color: $bg;
+        box-sizing: border-box;
+    }
+}

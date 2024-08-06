@@ -1,0 +1,31 @@
+// abstracts FILE
+// 로딩 순서 중요! 변수정의 -> 변수로 함수 정의 -> 함수와 변수를 사용해 믹스인 정의
+@import 'abstracts/variable'; // 변수
+@import 'abstracts/function'; // 함수
+@import 'abstracts/mixin'; // 믹스인
+
+
+// base FILE
+@import 'base/reset'; // 리셋, 노멀라이즈
+@import 'base/typography'; // 타이포그래피
+
+
+// component FILE
+@import 'components/button'; // 버튼들
+@import 'components/tab'; // 탭 & 타이틀
+@import 'components/card'; // 카드
+@import 'components/badge'; // 배지
+@import 'components/form'; // 입력폼 
+@import 'components/plyy'; // 플리상세 
+@import 'components/song'; // 곡상세
+@import 'components/curator'; // 큐레이터
+
+
+// layout FILE
+@import 'layout/align'; // 정렬
+@import 'layout/header'; // 헤더
+@import 'layout/footer'; // 푸터
+@import 'layout/main'; // 메인
+@import 'layout/guide'; // 가이드 정의
+@import 'layout/space'; // 마진, 패딩
+

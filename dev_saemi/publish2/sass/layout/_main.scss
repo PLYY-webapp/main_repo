@@ -1,0 +1,16 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $black;
+    // border: 1px solid blue;
+
+    &__container {
+        max-width: rem(720);
+        width: 100%;
+        // min-width: rem(390);
+        // width: 60%;
+        background-color: $base_black;
+        // border: 1px solid red;
+    }
+}

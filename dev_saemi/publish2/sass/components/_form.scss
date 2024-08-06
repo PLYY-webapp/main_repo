@@ -1,0 +1,65 @@
+// (타입이 체크박스와 라디오버튼인 것을 제외한 모든) 인풋. 즉 타입이 텍스트, 넘버, 패스워드 등 인것들
+input:not([type="checkbox"], [type="radio"]) {
+    height: rem(40);
+    padding: rem(11) rem(16);
+    border: 1px solid $base_white;
+    border-radius: rem(40);
+    box-sizing: border-box;
+    &[readonly] {
+        background-color: $gray7; // 비활 인풋필드 있을시 수정하여 사용
+    }
+}
+
+.search {
+    // 디폴트
+    &-type1 {
+        margin: rem(32) rem(16) rem(16) rem(16);
+        display: flex;
+        height: rem(40);
+        input {
+            width: 100%;
+            margin-right: rem(8);
+        }
+        div {
+            gap: rem(8);
+        }
+    }
+    // 검색 결과
+    &-type2 {
+        margin: rem(32) rem(16) rem(16) rem(16);
+        display: flex;
+        position: relative;
+        height: rem(40);
+        input {
+            width: 100%;
+            padding-left: rem(44);
+            margin-right: rem(8);
+        }
+        div {
+            gap: rem(8);
+        }
+        .btn-hash2 {
+            @include position(left, rem(16), bottom, rem(8))
+        }
+    }
+    // 태그 검색 목록
+    &-tags {
+        height: rem(23);
+        white-space: nowrap;
+        overflow-x: auto;
+        margin-left: rem(10.5); // 페이지 통합시 마진 고민해 봐야함
+        margin-right: rem(10.5); // 페이지 통합시 마진 고민해 봐야함
+        li {
+            display: inline-block;
+            min-width: rem(50);
+            height: 100%;
+            margin-right: rem(6); // 원래는 rem(8)인데 li들 사이의 기본 간격이 있음.. inline-block 때문에 gap 속성도 안먹음.. 개선 필요
+            opacity: 85%;
+            box-sizing: border-box;
+        }
+    }
+}
+// 가로 스크롤바 안보이게 하기 - 윈도우에서 확인 필요
+.search-tags::-webkit-scrollbar{
+    display: none;
+}

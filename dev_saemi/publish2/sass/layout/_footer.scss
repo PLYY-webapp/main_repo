@@ -1,0 +1,46 @@
+// 현재 이미지 박아넣음. 추후 컴포넌트화 필요
+.footer {
+    background-color: $footer;
+    height: rem(191);
+    &__img {
+        @include background_img('footer.svg', left, null, null, null, null);
+        width: rem(390);
+        height: rem(191);
+    }
+}
+
+
+// <ul>
+//     <li class="ico1"><a href="">홈</a></li>
+//     <li class="ico2"><a href="">검색</a></li>
+//     <li class="ico3"><a href="">결제·적립</a></li>
+//     <li class="ico4"><a href="">주문내역</a></li>
+//     <li class="ico5"><a href="">MY</a></li>
+// </ul>
+// .gnb {
+//     box-shadow: 0 rem(-4) rem(4) $base_black;
+//     ul {
+//         display: flex;
+//     }
+//     li {
+//         // 자식요소들이 1/n로 공간을 나눠 갖는다.
+//         flex: 1;
+//     }
+//     a {
+//         display: block; // a = inline, padding 넣으려면 block으로 바꿔줘야함
+//         padding: rem(35) 0 rem(6); // padding 속성 3개 : 위 좌우 아래
+//         font-weight: 500;
+//         font-size: rem(11);
+//         line-height: rem(16);
+//         text-align: center;
+//         color: $base_white;
+//     }
+//     @for $i from 1 to 6 {  //to num = num 미만
+//         .ico#{$1} { // 값, 클래스명, 속성 등의 문자와 변수명이 함께 오면 변수 문자보관 #{} 필요
+//             background: url(../images/gnb_ico_off#{$i}.svg) no-repeat center rem(8); // 위에서 rem(8)만큼 떨어져 있다
+//             &:hover {
+//                 background: url(../images/gnb_ico_on#{$i}.svg) no-repeat center rem(8); // 위에서 rem(8)만큼 떨어져 있다
+//                 color: $black
+//             }
+//         }
+//     }

@@ -1,0 +1,24 @@
+.header {
+    // 수직 중앙 정렬 : 부모가 block이라 자식요소들이 위로 정렬될 때, 자식들을 수직 중앙정렬
+    display: flex;
+    align-items: center;
+
+    height: rem(56);
+    
+    .align {
+        // display: felx;의 경우 디폴트가 flex-start
+        // --> 가로 크기를 주고 justify-content: space-between; 하면 양쪽정렬이 됨
+        // .header에 width: 100%; 줘봤자 자식 요소들에는 적용이 안됨. 부모의 width가 자식에게 자동상속 X
+        // -->  자식에 너비값을 줘야함
+        width: 100%;
+    }
+    &__icon-group {
+        display: flex;
+        align-items: center;
+        gap: rem(16);
+        margin: rem(8) rem(16) rem(8) auto;
+    }
+    .btn-logo {
+        margin: rem(10) auto rem(10) rem(16);
+    }
+}

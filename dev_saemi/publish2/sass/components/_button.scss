@@ -1,0 +1,95 @@
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    // 헤더 버튼 시작
+    &-logo {
+        // 이미지파일명, x축, y축, 배경색, background-size: width, background-size: height
+        @include background_img('header-logo.svg', center, null, null, null, null);
+        width: rem(86.48);
+        height: rem(36);
+    }
+    &-bell--default {
+        @include background_img('header-bell--default.svg', center, null, null, null, null);
+        width: rem(30);
+        height: rem(30);
+        // 새로운 알림이 있을시 --new img로 보여줌. 추후에 hover가 아닌 트리거 심어야함!
+        &:hover {
+            @include background_img('header-bell--new.svg', center, null, null, null, null);
+            width: rem(30);
+            height: rem(30);
+        }
+    }
+    &-mylikes {
+        @include background_img('header-mylikes.svg', center, null, null, null, null);
+        width: rem(30);
+        height: rem(30);
+    }
+    &-myprofile {
+        @include background_img('header-myprofile.svg', center, null, null, null, null);
+        width: rem(40);
+        height: rem(40);
+    }
+    // 헤더 버튼 끝
+
+    // 메인 페이지 버튼 시작    
+    &__arrow-left--white{
+        // 이미지파일명, x축, y축, 배경색, background-size: width, background-size: height
+        @include background_img('btn__arrow-left--white.svg', center, null, null, null, null);
+        width: rem(24);
+        height: rem(24);
+    }
+    // 플리 좋아요 - unfill
+    &-plike--unfill {
+        @include background_img('ico__plike--unfill.svg', center, null, null, null, null);
+        width: rem(46);
+        height: rem(46);
+    }
+    // 플리 좋아요 - fill
+    &-plike--fill {
+        @include background_img('ico__plike--fill.svg', center, null, null, null, null);
+        width: rem(46);
+        height: rem(46);
+    }
+    // 큐레이터 좋아요 - unfill
+    &-clike--unfill {
+        @include background_img('ico__clike--unfill.svg', center, null, null, null, null);
+        width: rem(46);
+        height: rem(46);
+    }
+    // 큐레이터 좋아요 - fill
+    &-clike--fill {
+        @include background_img('ico__clike--fill.svg', center, null, null, null, null);
+        width: rem(46);
+        height: rem(46);
+    }
+    // 해시1 아이콘
+    &-hash {
+        @include background_img('ico__hash.svg', center, null, null, null, null);
+        width: rem(40);
+        height: rem(40);
+    }
+    &-hash--active {
+        @include background_img('ico__hash--active.svg', center, null, null, null, null);
+        width: rem(40);
+        height: rem(40);
+    }
+    // 검색 아이콘
+    &-search {
+        @include background_img('ico__search.svg', center, null, null, null, null);
+        width: rem(40);
+        height: rem(40);
+    }
+    // 해시2 아이콘
+    &-hash2 {
+        @include background_img('ico__hash2.svg', center, null, null, null, null);
+        width: rem(24);
+        height: rem(24);
+    }
+    // 메인 페이지 버튼 끝
+    &-curator-heart {
+        @include background_img('ico__curator-heart.svg', center, null, null, null, null);
+        width: rem(24);
+        height: rem(24);
+    }
+}

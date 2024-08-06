@@ -1,0 +1,15 @@
+// px --> rem
+@function rem($px, $base : 10) {
+    // rem = 실측값 / 기준 폰트값(html 요소에 지정한 폰트 크기)
+    // 4 rem = 40px / 10px 
+    $sum : $px / $base;
+    
+    @return $sum + rem;
+}
+
+//px --> vw
+@function vw($px, $base : 720) {
+    // $sum : (100 * 실측값) / 전체해상도값 * 1vw;
+    $sum : (100 * $px) / $base;
+    @return $sum + vw;
+}
