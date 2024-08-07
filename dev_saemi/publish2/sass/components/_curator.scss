@@ -1,5 +1,29 @@
-.c_img {
-    width: rem(300);
+.c-img {
+    width: 100%;
     height: rem(300);
-    background-image: url("../images/@c_img2.jpg") no-repeat;
+    background-image: url('../images/song-detail-background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    &__info {
+        @include position(left, 0, bottom, 0);
+        width: 100%;
+        min-height: rem(109);
+        box-sizing: border-box;
+        padding: rem(16);
+        &__curator {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: rem(135);
+            height: rem(41);
+            padding: rem(8);
+            gap: rem(8);
+            // border: 1px solid greenyellow;
+            box-sizing: border-box;
+        }
+    }
+    .fs14 {
+        color: $base_white;
+    }
 }

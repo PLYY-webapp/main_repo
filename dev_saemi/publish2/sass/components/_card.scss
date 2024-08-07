@@ -79,6 +79,11 @@
             // border-radius: rem(20) rem(20) 0 0; // 위에서 overflow: hidden; 줬기 때문에 필요 없음. 이미지 변경 확인 후 삭제 필요.      
             object-fit: cover; // 이미지가 다소 잘리더라도 프레임 크기에 맞춰 조절
         }
+        // NEW / UPDATE 라벨
+        .green {
+            @include position(left, rem(8), top, rem(8));
+            width: rem(67);
+        }
         // 태그 목록 (최대 2개 : 장르태그 1 + 일반태그 1)
         &__tag-list {
             @include position(left, rem(16), bottom, rem(16));

@@ -3,8 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>메인화면</title>
+    <title>곡 상세</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* 추후에 JS로 song 파일에 넣을 수 있을까? */
+        .main__container {
+            background-image: url('images/song-detail-background.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 </head>
 <body>
     <main class="main">
@@ -35,6 +43,12 @@
                     뉴잭스윙이 마침내 메인스트림에서 주목받게 되어 정말 기쁩니다. 
                     이를 기념하기 위해 Murakami Takashi를 오마주한 아트워크와 함께 매년 여름마다 선보이는 믹셋을 업로드합니다.
                     오래 기다리셨습니다. 즐겁게 들어 주시고 시원한 여름 되세요! ☀️😎</div>
+            </div>
+            <div class="fixed-floating">
+                <div class="floating-song">
+                    <div><button class="btn__float__arrow__left" aria-label="뒤로가기"></button></div>
+                    <div><button class="btn__float__share--black" aria-label="플레이리스트 공유하기"></button></div>
+                </div>
             </div>
         </div>
     </main>

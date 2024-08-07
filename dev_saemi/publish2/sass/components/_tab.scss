@@ -99,7 +99,8 @@
         word-wrap: break-word;
     }
     &-type2 {
-        padding-bottom: rem(16);
+        margin: rem(16) rem(12) auto rem(12);
+        padding-bottom: rem(12);
         border-bottom: rem(4) solid transparent;
         background: linear-gradient(to right, $base_black, $base_black) padding-box, linear-gradient(90deg, #97E3FF 13.25%, #F5F5F5 26.5%, #22B9F1 95%) border-box;
         box-sizing: border-box; 

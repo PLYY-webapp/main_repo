@@ -86,9 +86,32 @@
         width: rem(24);
         height: rem(24);
     }
+    &__main__arrow {
+        @include background_img('float__main__arrow.svg', center, null, null, null, null);
+        width: rem(40);
+        height: rem(40);
+    }
     // 메인 페이지 버튼 끝
+
     &-curator-heart {
         @include background_img('ico__curator-heart.svg', center, null, null, null, null);
+        width: rem(24);
+        height: rem(24);
+    }
+
+    // 플리상세 : 플로팅바
+    &__float__arrow__left {
+        @include background_img('float__arrow__left.svg', center, null, null, null, null);
+        width: rem(24);
+        height: rem(24);
+    }
+    &__float__like {
+        @include background_img('float__like.svg', center, null, null, null, null);
+        width: rem(24);
+        height: rem(24);
+    }
+    &__float__share--black {
+        @include background_img('float__share--black.svg', center, null, null, null, null);
         width: rem(24);
         height: rem(24);
     }
