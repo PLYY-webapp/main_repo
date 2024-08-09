@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base target="_blank">
+    <!-- <base target="_blank"> -->
     <title></title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
@@ -17,7 +17,7 @@
                 <button class="btn-bell--default" aria-label="알림 없음"></button>
                 <!-- <button class="btn-bell--new" aria-label="새로운 알림 있음"></button> -->
                 <button class="btn-mylikes" aria-label="나의 좋아요"></button>
-                <button class="btn-myprofile" aria-label="내 프로필"></button>
+                <button id="profile" class="btn-myprofile" aria-label="내 프로필"></button>
             </div>
         </div>
     </header>
@@ -53,7 +53,20 @@
     {% block script %}{% endblock %}
 
     <!-- 헤더 스크립트 -->
-    {% block header_script %}{% endblock %}
+    {% block header_script %}
+    <script>
+        // 세션에서 로그인 상태 확인
+        var loggedIn = "{{ session['id'] }}"; // Flask 세션에서 로그인한 사용자 아이디 가져오기
+        
+        // 로그인 상태에 따라 링크 추가
+        if (! loggedIn) {
+            document.getElementById('profile').onclick = function() {
+                window.location.href = '/login' //로그인 페이지로 이동
+            }
+        }
+
+    </script>
+    {% endblock %}
 
     <!-- 푸터 스크립트 -->
     {% block footer_script %}{% endblock %}

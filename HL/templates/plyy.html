@@ -24,6 +24,18 @@
             <ul class="plyy__bottom__song-list" id="tracks"></ul>
         </div>
     </div>
+
+    <!-- 플리상세 플로팅 바 -->
+    <div class="fixed-floating">
+        <div class="floating-plyy">
+            <div><button class="btn__float__arrow__left" aria-label="뒤로가기"></button></div>
+            <div class="like-group">
+                <button class="btn__float__like" aria-label="플레이리스트 좋아요 수"></button>
+                <span class="fs12" id = 'plike'></span>
+            </div>
+            <div><button class="btn__float__share--black" aria-label="플레이리스트 공유하기"></button></div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block script %}
@@ -44,11 +56,12 @@
                 const plyyTitle = document.getElementById('plyy_title');
                 const date = document.getElementById('date');
                 const curator = document.getElementById('curator');
-                const heart = document.getElementById('heart');
+                const plike = document.getElementById('plike');
                 const total = document.getElementById('total');
                 const tagContainer = document.getElementById('tag_container');
                 const comment = document.getElementById('comment');
                 plyyTitle.textContent = data.plyy.title;
+                plike.textContent = data.plyy.heart;
                 if (data.plyy.update) {
                     date.innerHTML  = '수정일 : ' + data.plyy.update.replace(/-/g, '.');
                 } else {
