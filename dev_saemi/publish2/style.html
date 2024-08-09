@@ -34,7 +34,7 @@
                     <li><a href="#guide7" class="h2">텍스트</a></li>
                     <li><a href="#guide8" class="h2">버튼 & 라벨</a></li>
                     <li><a href="#guide9" class="h2">플로팅 아이콘</a></li>
-                    <li><a href="#guide10" class="h2">큐레이터 상세</a></li>
+                    <li><a href="#guide10" class="h2">모달</a></li>
                 </ul>
             </nav>
             <h2 class="h2" id="guide1">검색창 & 인풋폼</h2>
@@ -353,12 +353,90 @@
                 <div><button class="btn__float__share--black" aria-label="플레이리스트 공유하기"></button></div>
 
             </div>
-            <h2 class="h2" id="guide10">큐레이터 상세</h2>
-            <!-- 큐레이터 이미지 -->
-            <div class="c_img"></div>
+            <h2 class="h2" id="guide10">모달</h2>
+            <!-- 모달 : (디폴트) 버튼 1개 --> <br>
+            <div class="modal">
+                <div class="modal__title">
+                    <span class="fs20">로그인 실패</span>
+                </div>
+                <div class="modal__text">
+                    <span class="fs14">회원정보가 일치하지 않습니다.</span>
+                    <span class="fs14">아이디 및 비밀번호를 확인해 주세요.</span>
+                </div>
+                <div class="modal__btns">
+                    <button class="btn confirm">확인</button>
+                </div>
+            </div>
+            <!-- 모달 : 버튼 2개 --> <br>
+            <div class="modal">
+                <div class="modal__title">
+                    <span class="fs20">프로필 이미지 변경</span>
+                </div>
+                <div class="modal__text">
+                    <span class="fs14">이미지가 너무 작으면 제대로 보여지지 않을 수 있습니다.</span>
+                    <span class="fs14">권장 이미지 사이즈: 300px * 300px</span>
+                </div>
+                <div class="modal__btns align both">
+                    <button class="btn confirm">찾아보기</button>
+                    <button class="btn cancel">취소</button>
+                </div>
+            </div>
+            <!-- 모달 : 인풋(디폴트) --> <br>
+            <div class="modal">
+                <div class="modal__title">
+                    <span class="fs20">비밀번호 변경</span>
+                </div>
+                <div class="modal__text">
+                    <span class="fs14">변경할 비밀번호를 입력해 주세요.</span>
+                    <form action="">
+                        <input type="text" class="fs14" placeholder="특수문자 포함 8자리 이상">
+                        <p class="fs14 hide">비밀번호 형식을 확인해 주세요.</p>
+                    </form>
+                </div>
+                <div class="modal__btns align both">
+                    <button class="btn confirm">확인</button>
+                    <button class="btn cancel">취소</button>
+                </div>
+            </div>
+            <!-- 모달 : 인풋(컨디션 불일치) --> <br>
+            <!-- modal__text--invalid 클래스 추가 + p태그 hide 클래스 삭제 -->
+            <div class="modal">
+                <div class="modal__title">
+                    <span class="fs20">비밀번호 변경</span>
+                </div>
+                <div class="modal__text--invalid">
+                    <span class="fs14">변경할 비밀번호를 입력해 주세요.</span>
+                    <form action="">
+                        <input type="text" class="fs14" placeholder="특수문자 포함 8자리 이상">
+                        <p class="fs14">비밀번호 형식을 확인해 주세요.</p>
+                    </form>
+                </div>
+                <div class="modal__btns align both">
+                    <button class="btn confirm">확인</button>
+                    <button class="btn cancel">취소</button>
+                </div>
+            </div>
+            <!-- 모달 : 인풋(컨디션 일치) --> <br>
+            <!-- modal__text--valid 클래스 추가 + p태그 hide 클래스 삭제 -->
+            <div class="modal">
+                <div class="modal__title">
+                    <span class="fs20">비밀번호 변경</span>
+                </div>
+                <div class="modal__text--valid">
+                    <span class="fs14">변경할 비밀번호를 입력해 주세요.</span>
+                    <form action="">
+                        <input type="text" class="fs14" placeholder="특수문자 포함 8자리 이상">
+                        <p class="fs14">입력된 비밀번호가 일치합니다.</p>
+                    </form>
+                </div>
+                <div class="modal__btns align both">
+                    <button class="btn confirm">확인</button>
+                    <button class="btn cancel">취소</button>
+                </div>
+            </div>
         </div>
     </main>
-    <!-- 푸터 : 현재 이미지 박아넣음. 추후 컴포넌트화 필요-->
+    <!-- 푸터 : 현재 이미지 박아넣음. 추후 컴포넌트화 필요--> <br>
     <footer class="footer">
         <div>
             <div class="footer__img"></div>

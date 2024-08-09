@@ -115,4 +115,12 @@
         width: rem(24);
         height: rem(24);
     }
+    // 
+    &__arrow-right{
+        // 이미지파일명, x축, y축, 배경색, background-size: width, background-size: height
+        @include background_img('btn__arrow-left--white.svg', center, null, null, null, null);
+        width: rem(24);
+        height: rem(24);
+        transform: rotate(180deg);
+    }
 }

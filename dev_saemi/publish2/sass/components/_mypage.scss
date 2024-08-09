@@ -1,0 +1,69 @@
+// 마이페이지
+.mypage-profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: rem(23);
+    padding-top: rem(64);
+    padding-bottom: rem(30);
+    &__img {
+        img {
+            width: rem(120);
+            height: rem(120);
+            border-radius: rem(20);
+            object-fit: cover;
+        }
+    }
+}
+.mypage-menu {
+    height: rem(187);
+    padding: rem(8) rem(16);
+    margin: auto rem(16);
+    box-sizing: border-box;
+    margin-bottom: rem(50); // 너무 바짝 붙어있어서 임시로 넣어놓음..
+    li  {
+        height: rem(57);
+        padding-top: rem(16);
+        padding-bottom: rem(16);
+        box-sizing: border-box;
+    }
+
+    &--active {
+        color: $base_white;
+    }
+}
+
+// 마이페이지 > 내 정보 수정
+.edit-info {
+    height: rem(282);
+    padding: rem(8) rem(16);
+    margin: auto rem(16);
+    box-sizing: border-box;
+    margin-bottom: rem(50);  // 너무 바짝 붙어있어서 임시로 넣어놓음..
+    &__profile {
+        height: rem(152);
+        padding-top: rem(16);
+        padding-bottom: rem(16);
+        box-sizing: border-box;
+        a {
+            align-items: center;
+        }
+        a > img {
+            width: rem(120);
+            height: rem(120);
+            border-radius: rem(20);
+            object-fit: cover;
+        }
+    }
+    &__list {
+        height: rem(57);
+        padding-top: rem(16);
+        padding-bottom: rem(16);
+        box-sizing: border-box;
+        &__detail {
+            display: inline-flex;
+            gap: rem(8);
+        }
+    }
+}

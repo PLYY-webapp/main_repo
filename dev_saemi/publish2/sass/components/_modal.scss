@@ -1,0 +1,100 @@
+.modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: rem(8) rem(16) rem(32);
+    width: rem(358);
+
+    border-radius: rem(20);
+    background-color: $footer;
+    gap: rem(23);
+
+    &__title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: rem(326);
+        height: rem(57);
+        border-bottom: 1px solid $base_green;
+        box-sizing: border-box;
+        span {
+            color: $base_white;
+        }
+    }
+    &__text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: rem(326);
+        color: $base_white;
+        span {
+            color: $base_white;
+        }
+        form {
+            width: 100%;
+            input {
+                width: 100%;
+                margin-top: rem(16);
+                margin-bottom: rem(4);
+            }
+        }
+        &--invalid {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: rem(326);
+            color: $base_white;
+            span {
+                color: $base_white;
+            }
+            form {
+                width: 100%;
+                input {
+                    width: 100%;
+                    margin-top: rem(16);
+                    border: 2px solid $base_orange;
+                    box-sizing: border-box;
+                    margin-bottom: rem(4);
+                }
+                p {
+                    color: $base_orange;
+                }
+            }
+        }
+        &--valid {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: rem(326);
+            color: $base_white;
+            span {
+                color: $base_white;
+            }
+            form {
+                width: 100%;
+                input {
+                    width: 100%;
+                    margin-top: rem(16);
+                    border: 2px solid $base_green;
+                    box-sizing: border-box;
+                    margin-bottom: rem(4);
+                }
+                p {
+                    color: $base_green;
+                }
+            }
+        }
+    }
+    &__btns {
+        width: rem(326);
+        gap: rem(16);
+        button {
+            width: 100%;
+        }
+    }
+}
