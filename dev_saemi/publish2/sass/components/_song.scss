@@ -45,8 +45,13 @@
 }
 
 .song__index {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     height: rem(87);
+    margin: auto rem(16);
+    .index {
+        @include position(left, 50%)
+    }
 }
