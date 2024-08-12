@@ -15,7 +15,7 @@
                 <button class="btn-bell--default" aria-label="알림 없음"></button>
                 <!-- <button class="btn-bell--new" aria-label="새로운 알림 있음"></button> -->
                 <button class="btn-mylikes" aria-label="나의 좋아요"></button>
-                <button class="btn-myprofile" aria-label="내 프로필"></button>
+                <button class="btn-myprofile2" aria-label="내 프로필"></button>
             </div>
         </div>
     </header>
@@ -41,36 +41,42 @@
                 <a href="" class="login__signup fs14">아직 플리에 가입하지 않으셨다면?</a>
             </div>
             <!-- 회원가입 : 디폴트--><div style="border: 4px solid pink;"></div>
-            <div class="signup">
-                <p class="signup__text fs20-bold">plyy에 오신 것을 환영합니다 ! </p>
-                <div class="signup__input">
-                    <label for="email" class="fs14">이메일을 입력해 주세요.</label>
-                    <input type="email" class="fs14" id="email" placeholder="plyy@plyy.com">
-                    <p class="fs14 hide">이미 가입된 이메일 입니다.</p>
+            <div>
+                <div class="signup">
+                    <p class="signup__text fs20-bold">plyy에 오신 것을 환영합니다 ! </p>
+                    <div class="signup__input">
+                        <label for="email" class="fs14">이메일을 입력해 주세요.</label>
+                        <input type="email" class="fs14" id="email" placeholder="plyy@plyy.com">
+                        <p class="fs14 hide">이미 가입된 이메일 입니다.</p>
+                    </div>
+                    <button class="btn confirm">확인</button>
                 </div>
-                <button class="btn confirm">확인</button>
             </div>
             <!-- 회원가입 : 입력 컨디션 불일치 --><div style="border: 4px solid pink;"></div>
             <!-- 차이점 : input--invalid 클래스 추가됨 + p tag에 hide 클래스 없어짐 -->
-            <div class="signup">
-                <p class="signup__text fs20-bold">plyy에 오신 것을 환영합니다 ! </p>
-                <div class="signup__input--invalid">
-                    <label for="email" class="fs14">이메일을 입력해 주세요.</label>
-                    <input type="email" class="fs14" id="email" placeholder="plyy@plyy.com">
-                    <p class="fs14">이미 가입된 이메일 입니다.</p>
+            <div>
+                <div class="signup">
+                    <p class="signup__text fs20-bold">plyy에 오신 것을 환영합니다 ! </p>
+                    <div class="signup__input--invalid">
+                        <label for="email" class="fs14">이메일을 입력해 주세요.</label>
+                        <input type="email" class="fs14" id="email" placeholder="plyy@plyy.com">
+                        <p class="fs14">이미 가입된 이메일 입니다.</p>
+                    </div>
+                    <button class="btn confirm">확인</button>
                 </div>
-                <button class="btn confirm">확인</button>
             </div>
             <!-- 회원가입: 입력 컨디션 일치 --><div style="border: 4px solid pink;"></div>
             <!-- 차이점 : input--valid 클래스 추가됨 + p tag에 hide 클래스 없어짐 -->
-            <div class="signup">
-                <p class="signup__text fs20-bold">plyy에 오신 것을 환영합니다 ! </p>
-                <div class="signup__input--valid">
-                    <label for="email" class="fs14">이메일을 입력해 주세요.</label>
-                    <input type="email" class="fs14" id="email" placeholder="plyy@plyy.com">
-                    <p class="fs14">가입이 가능한 이메일 입니다.</p>
+            <div>
+                <div class="signup">
+                    <p class="signup__text fs20-bold">plyy에 오신 것을 환영합니다 ! </p>
+                    <div class="signup__input--valid">
+                        <label for="email" class="fs14">이메일을 입력해 주세요.</label>
+                        <input type="email" class="fs14" id="email" placeholder="plyy@plyy.com">
+                        <p class="fs14">가입이 가능한 이메일 입니다.</p>
+                    </div>
+                    <button class="btn confirm">확인</button>
                 </div>
-                <button class="btn confirm">확인</button>
             </div>
             <!-- 회원가입을 성공적으로 완료 > 회원가입 성공 모달 > 메인화면 -->
             <div class="modal">

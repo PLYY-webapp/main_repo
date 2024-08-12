@@ -30,6 +30,18 @@
         width: rem(40);
         height: rem(40);
     }
+    &-myprofile2 {
+        @include background_img('header-myprofile2.svg', center, null, null, null, null);
+        width: rem(40);
+        height: rem(40);
+        border-radius: rem(40);
+        img {
+            width: rem(40);
+            height: rem(40);
+            border-radius: rem(40);
+            object-fit: fit;
+        }
+    }
     // 헤더 버튼 끝
 
     // 메인 페이지 버튼 시작    

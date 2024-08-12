@@ -272,6 +272,18 @@ body {
   width: 4rem;
   height: 4rem;
 }
+.btn-myprofile2 {
+  background: url(../images/header-myprofile2.svg) no-repeat center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 4rem;
+}
+.btn-myprofile2 img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 4rem;
+  object-fit: fit;
+}
 .btn__arrow-left--white {
   background: url(../images/btn__arrow-left--white.svg) no-repeat center;
   width: 2.4rem;

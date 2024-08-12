@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- 헤더 -->
+    <!-- 헤더 : 로그인 전(디폴트 아이콘)-->
     <header class="header">
         <div class="align both">
             <div><button class="btn-logo" aria-label="플리 로고"></button></div>
@@ -15,7 +15,19 @@
                 <button class="btn-bell--default" aria-label="알림 없음"></button>
                 <!-- <button class="btn-bell--new" aria-label="새로운 알림 있음"></button> -->
                 <button class="btn-mylikes" aria-label="나의 좋아요"></button>
-                <button class="btn-myprofile" aria-label="내 프로필"></button>
+                <button class="btn-myprofile2" aria-label="내 프로필"></button>
+            </div>
+        </div>
+    </header>
+    <!-- 헤더 : 로그인 후(유저 프로파일 이미지)-->
+    <header class="header">
+        <div class="align both">
+            <div><button class="btn-logo" aria-label="플리 로고"></button></div>
+            <div class="header__icon-group">
+                <button class="btn-bell--default" aria-label="알림 없음"></button>
+                <!-- <button class="btn-bell--new" aria-label="새로운 알림 있음"></button> -->
+                <button class="btn-mylikes" aria-label="나의 좋아요"></button>
+                <button class="btn-myprofile2" aria-label="내 프로필"><img src="images/@profile.jpg" alt=""></button>
             </div>
         </div>
     </header>

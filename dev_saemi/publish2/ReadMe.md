@@ -1,3 +1,4 @@
+
 2024.08.12 UPDATED---------------------------------------------------------------
 
 <변경 완료 사항>
@@ -10,6 +11,10 @@
             ! mypage-edit-info.html에 추가됨
     - song-detail.html 인덱싱을 위한 좌우 버튼 추가 (완료)
             ! song-detail.html > index 부분 클래스명 수정됨
+
+2. 헤더 마이프로필 부분 수정
+        - 로그인 전(디폴트 아이콘, 클래스명 변경됨) : <button class="btn-myprofile2" aria-label="내 프로필"></button> : 클래스명 변경됨
+        - 로그인 후(img 태그 추가됨) : <button class="btn-myprofile2" aria-label="내 프로필"><img src="images/@profile.jpg" alt=""></button>
             
 
 2024.08.10 UPDATED---------------------------------------------------------------
