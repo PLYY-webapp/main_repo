@@ -1,13 +1,16 @@
 import database as db
-from flask import Blueprint, jsonify, render_template, session
-from models import curatorlike_status, plyylike_status, tag_query, plyy_query
-from utils import extract_user
+from flask import Blueprint, jsonify, render_template, request
+from models import tag_query, plyy_query, curator_query
 
 main = Blueprint('main', __name__)
 plyy = Blueprint('plyy', __name__)
+search = Blueprint('search', __name__)
+likes = Blueprint('like', __name__)
 api_main = Blueprint('api_main', __name__)
 api_plyy = Blueprint('api_plyy', __name__)
 api_c_plyy = Blueprint('api_c_plyy', __name__)
+api_search = Blueprint('api_search', __name__)
+api_like = Blueprint('api_like', __name__)
 
 
 @main.route('/')
@@ -23,6 +26,21 @@ def plyy_detail(id):
 @plyy.route('/<id>/<song_index>')
 def song_detail(id, song_index):
     return render_template('song.html')
+
+
+@search.route('/plyy')
+def search_plyy():
+    return render_template('search_plyy.html')
+
+
+@search.route('/curator')
+def search_curator():
+    return render_template('search_curator.html')
+
+
+@likes.route('/<id>')
+def like(id):
+    return render_template('like.html')
 
 
 @api_main.route('/tag')
@@ -54,52 +72,59 @@ def api_curator_plyy(id):
     return jsonify(result)
 
 
+@api_search.route('/plyy')
+def search_plyy():
+    param = request.args.get('q')
+    if param[0]=='#':
+        result = plyy_query('tag', param)
+    else:
+        result = plyy_query('title', param)
+    return jsonify(result)
+
+
+@api_search.route('/curator')
+def search_curator():
+    param = request.args.get('q')
+    result = curator_query('name', param)
+    return jsonify(result)
+
+
+@api_search.route('/tag')
+def search_tag():
+    tag = request.args.get('q')
+    query = '''
+            SELECT
+            p.id
+            FROM PLYY p
+            JOIN P_TAG pt ON p.id=pt.p_id
+            WHERE pt.name LIKE '%'||?||'%'
+            UNION
+            SELECT
+            p.id
+            FROM PLYY p
+            JOIN GENRE g ON p.g_id=g.id
+            WHERE pt.name LIKE '%'||?||'%'
+            '''
+    plyyByTag = db.get_query(query, (tag,))
+    result = plyy_query('pid', tag.lower())
+    return jsonify(result)
+
+
+@api_like.route('/plyy/<id>')
+def like_plyy(id):
+    result = plyy_query('uid', id)
+    return jsonify(result)
+    
+
+@api_like.route('/curator/<id>')
+def like_curator(id):
+    result = curator_query('uid', id)
+    return jsonify(result)
+    
+
 @api_main.route('/curator')
 def api_main_curator():
-    try:
-        query = '''
-                SELECT
-                id,
-                name,
-                img,
-                intro
-                FROM CURATOR
-                GROUP BY id;
-                '''
-        curators = db.get_query(query)
-        result = [dict(row) for row in curators]
-        
-        for i in result:
-            tags = tag_query('curator', i['id'])
-            tag = []
-            for j in tags[:2]:
-                tag.append(j['name'])
-            i['tag'] = tag
-
-        date_query = '''
-                    SELECT
-                    MAX(STRFTIME('%Y-%m-%d', p.gen_date)) AS generate,
-                    MAX(STRFTIME('%Y-%m-%d', p.up_date)) AS 'update'
-                    FROM PLYY p
-                    JOIN CURATOR c ON p.c_id=c.id
-                    GROUP BY c.id
-                    HAVING c.id=?;
-                    '''
-        for i in result:
-            date = db.get_query(date_query, (i['id'],), mul=False)
-            i.update(dict(date))
-        
-        cidlist = [i['id'] for i in result]
-
-        if 'id' in session and session['id']:
-            u_id = extract_user(session['id'])
-            if u_id:
-                c_isliked = curatorlike_status(cidlist, u_id)
-                for i in result:
-                    i['cliked'] = c_isliked.get(i['id'], False)
-    except:
-        print('큐레이터 목록을 불러오는데 실패했습니다.')
-
+    result = curator_query()
     return jsonify(result)
 
 

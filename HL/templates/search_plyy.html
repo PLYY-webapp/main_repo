@@ -1,0 +1,23 @@
+{% extends "base_search.html" %}
+
+{% block script_tag %}
+    <script>
+        function searchByTag() {
+            searchInput.value = '# ' + tagList[parseInt(Math.random() * tagList.length)];
+            name = searchInput.value; 
+        };
+    </script>
+{% endblock %}
+
+{% block script1 %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchPlyy(`/api/search/plyy?q=${encodeURIComponent(name)}`);
+            document.title = 'PLYY | Search PLYY';
+            mainTab.classList.remove('tab-type2');
+            mainTab.classList.add('tab-type1');
+            plyyTab.classList.remove('tab-type1--deactive');
+            curatorTab.classList.add('tab-type1--deactive');
+        });
+    </script>
+{% endblock %}

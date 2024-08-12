@@ -136,7 +136,7 @@ def plyy_unlike(p_id, u_id):
         return False 
 
 
-def tag_query(category, id, mul=True):
+def tag_query(category, param, mul=True):
     try:
         if category.lower() == 'plyy':
             query = '''
@@ -145,8 +145,7 @@ def tag_query(category, id, mul=True):
                     FROM TAG t 
                     JOIN P_TAG pt ON t.id=pt.id
                     WHERE pt.p_id=?
-                    '''
-
+                    '''        
         elif category.lower() == 'curator':
             query = '''
                     SELECT
@@ -154,9 +153,9 @@ def tag_query(category, id, mul=True):
                     FROM TAG t
                     JOIN C_TAG ct ON t.id=ct.id
                     WHERE ct.c_id=?
-                    '''
-            
-        tags = db.get_query(query, (id,), mul)
+                    '''    
+
+        tags = db.get_query(query, (param,), mul)
         
         return tags
     except:
@@ -185,12 +184,24 @@ def plyy_query(condition=None, param=None):
         query2 = ' GROUP BY p.id;'
         
         if condition:
-            if condition == 'cid':
+            if condition.lower() == 'cid':
                 add_query = 'WHERE c.id=?'
-            elif condition == 'plyy':
-                add_query = "WHERE p.title LIKE '%'||'%';"
-            elif condition == 'curator':
-                add_query = "WHERE c.name LIKE '%'||'%';"
+            elif condition.lower() == 'title':
+                add_query = "WHERE p.title LIKE '%'||?||'%'"
+            elif condition.lower() == 'uid':
+                add_query = "JOIN P_LIKE pl ON pl.p_id=p.id WHERE pl.u_id=?"
+            elif condition.lower() == 'tag':
+                add_query1 = '''
+                            JOIN P_TAG pt ON p.id=pt.p_id
+                            WHERE pt.name LIKE '%'||?||'%'
+                            UNION
+                            '''
+                add_query2 = '''
+                            JOIN GENRE g ON p.g_id=g.id
+                            WHERE pt.name LIKE '%'||?||'%'
+                            '''
+                add_query = add_query1 + add_query + add_query2
+                
             query = query1 + add_query + query2
             plyys = db.get_query(query, (param,))
 
@@ -210,7 +221,8 @@ def plyy_query(condition=None, param=None):
             else:
                 i['tag'] = ''
 
-        pidlist = [i['id'] for i in result]
+        pidlist = [i['id'] for i in result]                
+
 
         if 'id' in session and session['id']:
             u_id = extract_user(session['id'])
@@ -219,8 +231,61 @@ def plyy_query(condition=None, param=None):
                 print(p_isliked)
                 for i in result:
                     i['pliked'] = p_isliked.get(i['id'], False)
-
         return result
     except:
         print('플레이리스트 목록을 불러오는데 실패했습니다.')
     
+
+def curator_query(condition=None, param=None):
+    try:
+        query = '''
+                SELECT
+                c.id,
+                name,
+                img,
+                intro
+                FROM CURATOR c
+                '''
+        curators = db.get_query(query)
+
+        if condition:
+            if condition.lower()=='name':
+                query = query + " WHERE name LIKE '%'||?||'%';"
+                curators = db.get_query(query,(param,))
+            elif condition.lower()=='uid':
+                query = query + " JOIN C_LIKE cl ON c.id=cl.c_id WHERE cl.u_id=?;"
+                curators = db.get_query(query,(param,))
+
+        result = [dict(row) for row in curators]
+        
+        for i in result:
+            tags = tag_query('curator', i['id'])
+            tag = []
+            for j in tags[:2]:
+                tag.append(j['name'])
+            i['tag'] = tag
+
+        date_query = '''
+                    SELECT
+                    MAX(STRFTIME('%Y-%m-%d', p.gen_date)) AS generate,
+                    MAX(STRFTIME('%Y-%m-%d', p.up_date)) AS 'update'
+                    FROM PLYY p
+                    JOIN CURATOR c ON p.c_id=c.id
+                    GROUP BY c.id
+                    HAVING c.id=?;
+                    '''
+        for i in result:
+            date = db.get_query(date_query, (i['id'],), mul=False)
+            i.update(dict(date))
+        
+        cidlist = [i['id'] for i in result]
+
+        if 'id' in session and session['id']:
+            u_id = extract_user(session['id'])
+            if u_id:
+                c_isliked = curatorlike_status(cidlist, u_id)
+                for i in result:
+                    i['cliked'] = c_isliked.get(i['id'], False)
+        return result
+    except:
+        print('큐레이터 목록을 불러오는데 실패했습니다.')
