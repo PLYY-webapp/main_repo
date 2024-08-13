@@ -143,7 +143,7 @@ def plyy_unlike(p_id, u_id):
         return False
 
 
-def tag_query(category, id, mul=True):
+def tag_query(category, param, mul=True):
     try:
         if category.lower() == 'plyy':
             query = '''
@@ -163,7 +163,7 @@ def tag_query(category, id, mul=True):
                     WHERE ct.c_id=?
                     '''
             
-        tags = db.get_query(query, (id,), mul)
+        tags = db.get_query(query, (param,), mul)
         
         return tags
     
