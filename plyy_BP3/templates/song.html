@@ -68,7 +68,6 @@
                 const song_comment = document.getElementById('song_comment');
                 const before_page = document.getElementById('before');
                 const after_page = document.getElementById('after');
-                song_comment.innerHTML = `<div class="pretendard">${track.comment}</div>`
                 if (track.comment) {
                     song_comment.style.visibility = "visible";
                 }
@@ -78,7 +77,7 @@
                 page.innerHTML = '<span>' + `${song_num + 1}` + '</span>' +
                                  '<span>&nbsp;/&nbsp;</span>' +
                                  '<span>' + track.total_num + '</span>';
-                before_page.setAttribute('onclick', `location.href='/plyy/${plyyId}/${song_num }'`);
+                before_page.setAttribute('onclick', `location.href='/plyy/${plyyId}/${song_num}'`);
                 after_page.setAttribute('onclick', `location.href='/plyy/${plyyId}/${song_num + 2}'`);
                 if (song_num == 0) {
                     before_page.style.visibility = 'hidden';
@@ -87,7 +86,7 @@
                 }
                 song_title.textContent = track.title;
                 artist.textContent = track.artist;
-                album.textContent = track.album
+                album.textContent = track.album;
             })
             .catch(error => console.error('데이터를 처리하는 과정에서 오류가 발생하였습니다.'))
         };
