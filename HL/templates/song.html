@@ -68,9 +68,7 @@
                     song_comment.style.visibility = "visible";
                 }
                 song_comment.innerHTML = `<div class="pretendard">${track.comment}</div>`
-                // video.setAttribute('src', `${track.vid}`);
-                // video.setAttribute('src', "https://www.youtube.com/embed/PdUiCJnRptk");
-                video.setAttribute('src', "https://www.youtube.com/embed/ldzmYDDPnz4");
+                video.setAttribute('src', `${track.vid}`);
                 image.setAttribute('src', `${track.img}`);
                 page.innerHTML = '<span>' + `${song_num + 1}` + '</span>' +
                                  '<span>&nbsp;/&nbsp;</span>' +
